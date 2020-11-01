@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build && nodemon server.js",
+    "start": "node server.js",
+    "build": "ng build",
+    "build-dev": "ng build && nodemon server.js",
+    "deploy": "az webapp -n sw-571-hw8",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,6 +24,7 @@
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
