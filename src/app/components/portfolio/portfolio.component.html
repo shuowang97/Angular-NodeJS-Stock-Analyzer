@@ -3,7 +3,11 @@
     <span class="h1">My Portfolio</span>
   </div>
 
-  <div *ngIf="showUpAlert">
+  <div *ngIf="currentCards !== totalCards" class="text-center">
+    <mat-spinner diameter="66" strokeWidth="5" class="mt-5 mx-auto"></mat-spinner>
+  </div>
+
+  <div *ngIf="showUpAlert && currentCards === totalCards">
     <div class="mx-auto">
       <div role="alert" class="alert alert-warning text-center text-dark">
         Currently you don't have any stock.

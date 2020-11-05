@@ -16,6 +16,7 @@ export class WatchlistComponent implements OnInit {
   lastPrice: LastPrice;
   stockDiffer: number;
   showUpAlert = false;
+  currentResNumber = 0;
   constructor(private  homePageService: HomepageService) { }
   ngOnInit(): void {
 
@@ -32,6 +33,7 @@ export class WatchlistComponent implements OnInit {
           this.stockDiffer, parseFloat((this.stockDiffer * 100 / parseFloat(this.lastPrice[0].prevClose)).toFixed(2)));
         this.renderList.push(this.watchListItem);
         this.renderList.sort((a, b) => a.ticker.localeCompare(b.ticker));
+        this.currentResNumber++;
       });
     }
     console.log(this.renderList);

@@ -4,8 +4,8 @@ const router = express.Router();
 const axios = require('axios');
 const PostAPI = 'https://jsonplaceholder.typicode.com';
 
-// const tiingoKEY = 'b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
-const tiingoKEY = '3f19da6b56850f57435309e27dc47433e95b7631';
+const tiingoKEY = 'b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
+// const tiingoKEY = '3f19da6b56850f57435309e27dc47433e95b7631';
 
 
 const utilityUrl = 'https://api.tiingo.com/tiingo/utilities/search/';
@@ -57,8 +57,13 @@ router.get('/history/:id', (req, res) => {
 
 router.get('/utility/:id', (req, res) => {
   let ticker = req.params.id;
+  ticker = ticker.trim();
+  console.log(ticker);
+  if (ticker === '' || ticker.length === 0) {
+    ticker = '0';
+  }
   let reqUrl = utilityUrl + ticker + '?token=' + tiingoKEY;
-  console.log(reqUrl);
+  console.log('1', reqUrl);
   axios.get(reqUrl).then(info => {
     res.json(info.data);
   });

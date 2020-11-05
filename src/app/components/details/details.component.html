@@ -1,5 +1,8 @@
 <div class="container-lg p-sm-0container-lg p-sm-0">
-  <div class="my-3 col-12">
+  <div *ngIf="loadingLastPrice || loadingCompanyInfo" class="text-center">
+    <mat-spinner diameter="66" strokeWidth="5" class="mt-5 mx-auto"></mat-spinner>
+  </div>
+  <div class="my-3 col-12" *ngIf="!loadingLastPrice && !loadingCompanyInfo">
     <div class="row mt-3">
 
       <div class="alert alert-success alert-dismissible fade show col-12 text-center" role="alert"

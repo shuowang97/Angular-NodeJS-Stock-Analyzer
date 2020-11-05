@@ -15,6 +15,7 @@ export class HomepageComponent implements OnInit {
 
   myControl = new FormControl();
   filteredOptions: CompanyInfo[];
+  triggerAlert = false;
   public keyword = '';
 
   loading = false;
@@ -25,6 +26,14 @@ export class HomepageComponent implements OnInit {
       this.keyword = '';
       this.myControl.valueChanges.pipe(
         debounceTime(300),
+        tap((ticker) => console.log(ticker + ' ' + typeof ticker)),
+        filter(ticker => {
+          if (typeof ticker === 'string') {
+            return ticker.trim() !== '';
+          } else {
+            return true;
+          }
+        }),
         tap(() => this.loading = true),
         switchMap(value => this.homepageService.instantSearchAPI(value).pipe(
           map(companyInfoList => companyInfoList.filter(this.isExist)),
@@ -49,9 +58,16 @@ export class HomepageComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.myControl.value.ticker);
-    this.router.navigate(['/details/' + `${this.myControl.value.ticker}`]).then(response => {
-      console.log(response);
-    });
+    if (this.myControl.value.ticker === undefined) {
+      this.triggerAlert = true;
+      console.log(' ticker is undefined ................');
+    } else {
+      this.router.navigate(['/details/' + `${this.myControl.value.ticker}`]).then(response => {
+        console.log(response);
+        this.triggerAlert = false;
+      });
+    }
+
   }
 
 }
