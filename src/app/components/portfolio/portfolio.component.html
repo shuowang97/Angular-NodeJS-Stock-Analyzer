@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="py-5">
+    <span class="h1">My Portfolio</span>
+  </div>
+
+  <div *ngIf="showUpAlert">
+    <div class="mx-auto">
+      <div role="alert" class="alert alert-warning text-center text-dark">
+        Currently you don't have any stock.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div *ngFor="let itemToRender of portfolioRenderItems" >
+      <app-portfolio-card [itemToRender]=itemToRender
+                          *ngIf="!showUpAlert && totalCards === currentCards"
+                          (deletePortfolioItem)="deletePortfolioItem($event)">
+
+      </app-portfolio-card>
+    </div>
+  </div>
+
+</div>

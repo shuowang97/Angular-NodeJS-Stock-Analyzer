@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PostsComponent} from './posts/posts.component';
-import {ContactComponent} from './contact/contact.component';
-import {HomepageComponent} from './homepage/homepage.component';
-import {WatchlistComponent} from './watchlist/watchlist.component';
-import {PortfolioComponent} from './portfolio/portfolio.component';
-import {DetailsComponent} from './details/details.component';
+import {PostsComponent} from './components/posts/posts.component';
+import {ContactComponent} from './components/contact/contact.component';
+import {HomepageComponent} from './components/homepage/homepage.component';
+import {WatchlistComponent} from './components/watchlist/watchlist.component';
+import {PortfolioComponent} from './components/portfolio/portfolio.component';
+import {DetailsComponent} from './components/details/details.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
     component: PortfolioComponent
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component: DetailsComponent
   },
   {

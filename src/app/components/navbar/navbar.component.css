@@ -1,0 +1,8 @@
+.bg-purple {
+  background-color: #6f4ffb
+}
+
+.active {
+  border: .13em solid #fff;
+  border-radius: 1em
+}

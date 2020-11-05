@@ -1,0 +1,16 @@
+.search-bar {
+  border:solid #6f4ffb;
+  border-radius:2em
+}
+
+.btn-color {
+  color: #6f4ffb;
+}
+
+input:focus {
+  outline: none;
+}
+
+.w-90 {
+  width: 90%;
+}

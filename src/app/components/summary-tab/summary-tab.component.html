@@ -1,0 +1,68 @@
+<div class="row mx-0 mt-3 mb-5">
+
+  <div class="col-lg-6 mx-0 mb-3 row">
+    <div class="col-6 text-left mt-3">
+      <table class="border-0 mx-auto">
+        <tr>
+          <td>High Price: </td>
+          <td *ngIf="!loadingLastPrice">{{lastPrice.high}}</td>
+        </tr>
+        <tr>
+          <td>Low Price: </td>
+          <td *ngIf="!loadingLastPrice">{{lastPrice.low}}</td>
+        </tr>
+        <tr>
+          <td>Open Price: </td>
+          <td *ngIf="!loadingLastPrice">{{lastPrice.open}}</td>
+        </tr>
+        <tr>
+          <td>Prev. Close: </td>
+          <td *ngIf="!loadingLastPrice">{{lastPrice.prevClose}}</td>
+        </tr>
+        <tr>
+          <td>Volume: </td>
+          <td *ngIf="!loadingLastPrice">{{lastPrice.volume}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-6 text-left mt-3 ng-star-inserted" *ngIf="!closeMarket">
+      <table class="border-0 mx-auto">
+        <tr *ngIf="!loadingLastPrice">
+          <td>Mid Price: </td>
+          <td *ngIf="lastPrice.mid">{{lastPrice.mid}}</td>
+          <td *ngIf="!lastPrice.mid">-</td>
+        </tr>
+        <tr *ngIf="!loadingLastPrice">
+          <td>Ask Price: </td>
+          <td>{{lastPrice.askPrice}}</td>
+        </tr>
+        <tr *ngIf="!loadingLastPrice">
+          <td>Ask Size: </td>
+          <td>{{lastPrice.askSize}}</td>
+        </tr>
+        <tr *ngIf="!loadingLastPrice">
+          <td>Bid Price: </td>
+          <td>{{lastPrice.bidPrice}}</td>
+        </tr>
+        <tr *ngIf="!loadingLastPrice">
+          <td>Bid Size: </td>
+          <td>{{lastPrice.bidSize}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="mt-5 mb-3 col-12 text-center">
+      <span class="h5">Company's Description</span>
+    </div>
+    <div class="col-12 text-left">
+      <p *ngIf="!loadingCompanyInfo">Start Date: {{companyShort.startDate}}</p>
+      <p *ngIf="!loadingCompanyInfo">{{companyShort.description}}</p>
+    </div>
+  </div>
+
+  <div col-lg-6>
+    <app-summary-chart></app-summary-chart>
+  </div>
+</div>
+
+
+

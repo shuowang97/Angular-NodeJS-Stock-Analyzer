@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-purple sticky-top mx-0">
+  <a class="navbar-brand" routerLink href="/">Stock Search</a>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-right" id="navbarNav">
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item" *ngFor="let item of items; let i = index"
+          (click) = select(i)
+          [ngClass]="{'active': selectedIndex === i}">
+        <a class="nav-link px-3"
+           routerLink={{item.link}} data-toggle="collapse" data-target=".navbar-collapse.show">{{item.text}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>

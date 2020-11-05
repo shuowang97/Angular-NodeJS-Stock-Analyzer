@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ticker}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form>
+  <div class="modal-body">
+    <div class="container">
+      <span>Current Price: {{price.toFixed(2)}}</span>
+      <br>
+      <div class="form-inline">
+        <label class="pr-2">Quantity </label>
+        <input #qtyInput type="number" min="1" [formControl]="quantityControl" class="form-control mt-1 ng-pristine ng-invalid ng-star-inserted ng-touched" required>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="w-100 m-0 align-items-center">
+      <span class="float-left pt-2 pl-2">Total : {{totalPrice.toFixed(2)}}</span>
+      <button type="button" class="btn btn-success float-right" (click)="triggerTransaction()" [disabled]="qtyCheck()" *ngIf="!isSelling">Buy</button>
+      <button type="button" class="btn btn-success float-right" (click)="triggerTransaction()" [disabled]="qtyCheck()" *ngIf="isSelling">Sell</button>
+
+    </div>
+  </div>
+</form>
+

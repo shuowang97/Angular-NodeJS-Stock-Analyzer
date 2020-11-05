@@ -1,0 +1,73 @@
+<div class="card mb-3">
+  <div class="text-right">
+    <div role="button" class="card-header text-left" (click)="goToDetails()">
+      <span class="h2 text-left"> {{itemToRender.ticker}} </span>
+      <span class="h4 text-left text-muted">{{itemToRender.name}}</span>
+    </div>
+
+    <div class="row py-3 px-2 h4 font-weight-normal">
+
+      <div class="col-sm-12 col-md-6 px-sm-0 px-md-3">
+        <table class="border-0 text-left ml-md-2 w-100">
+          <tr>
+            <td>Quantity:</td>
+            <td class="text-right">{{itemToRender.qty}}</td>
+          </tr>
+          <tr>
+            <td>Avg. Cost / Share:</td>
+            <td class="text-right">{{itemToRender.share.toFixed(3)}}</td>
+          </tr>
+          <tr>
+            <td>Total Cost:</td>
+            <td class="text-right">{{itemToRender.totalPrice.toFixed(2)}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-sm-12 col-md-6 px-sm-0 px-md-3">
+        <table class="border-0 text-left mr-md-2 w-100">
+          <tr>
+            <td>Change:</td>
+            <td class="text-right" [ngStyle]="styleChoice()" *ngIf="itemToRender.change < -0.001">
+              <svg width="0.7em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+              {{itemToRender.change.toFixed(3)}}
+            </td>
+            <td class="text-right" [ngStyle]="styleChoice()" *ngIf="itemToRender.change > 0.001">
+              <svg width="0.7em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+              </svg>
+              {{itemToRender.change.toFixed(3)}}
+            </td>
+            <td class="text-right" [ngStyle]="styleChoice()" *ngIf="itemToRender.change < 0.001 && itemToRender.change > -0.001">
+              {{itemToRender.change.toFixed(3)}}
+            </td>
+          </tr>
+          <tr>
+            <td>Current Price:</td>
+            <td class="text-right" [ngStyle]="styleChoice()">{{itemToRender.currentPrice.toFixed(2)}}</td>
+          </tr>
+          <tr>
+            <td>Market Value:</td>
+            <td class="text-right" [ngStyle]="styleChoice()">{{itemToRender.marketValue.toFixed(2)}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card-footer text-right">
+      <button class="btn btn-primary mr-2 px-3" (click)="open()">
+        Buy
+      </button>
+      <button class="btn btn-danger mx-2 px-3" (click)="sell()">
+        Sell
+      </button>
+    </div>
+
+  </div>
+</div>

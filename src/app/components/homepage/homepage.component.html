@@ -1,0 +1,38 @@
+<div class="container mt-5 pt-5">
+  <div class="row">
+    <form class="font-weight-bold col-12 mx-auto ng-untouched ng-pristine ng-valid" name="search-form"
+          #myform="ngForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group row">
+        <div class="text-center font-weight-bold col-sm-12 col-md-12 col-lg-12 display-3 mb-5 mx-auto">STOCK SEARCH</div>
+        <div class="form-inline col-auto mx-auto search-bar">
+
+<!--          TODO: formControlName + mat-autocomplete-trigger + ng-untouched-->
+
+          <input type="text" id="keywords" name="keywords" placeholder="Enter stock name"
+          class="mat-autocomplete-trigger border-0 ng-untouched ng-pristine ng-valid" autocomplete="off"
+          role="combobox" aria-autocomplete="list" aria-haspopup="true" [matAutocomplete]="auto"
+          [formControl]="myControl">
+
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+            <mat-option disabled class="loading" *ngIf="loading">
+              <mat-spinner diameter="35"></mat-spinner>
+            </mat-option>
+            <ng-container *ngIf="!loading">
+              <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                {{option.ticker}} <small>| {{option.name}}</small>
+              </mat-option>
+            </ng-container>
+          </mat-autocomplete>
+          <button type="submit" class="btn btn-color border-0 pt-1" >
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

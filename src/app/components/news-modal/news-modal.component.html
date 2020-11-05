@@ -1,0 +1,48 @@
+
+<div class="modal-header">
+
+  <!--      TODO: check-->
+
+  <div id="modal-basic-title" class="modal-title">
+    <span class="h2">{{this.hostname}}</span>
+    <br>
+    <span class="h6 text-muted">{{this.publishDate}}</span>
+  </div>
+  <a type="button" aria-label="Close" class="close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </a>
+</div>
+
+<div class="modal-body">
+  <span class="h5">{{this.title}}</span>
+  <br>
+  <span>{{this.description}}</span>
+  <br>
+  <span class="text-muted">
+    For more details click
+    <a target="_blank" href="https://skillet.lifehacker.com/reeses-infused-vodka-is-a-trick-not-a-treat-1845454156">
+      here
+    </a>
+  </span>
+  <br>
+
+  <div class="card mt-5">
+    <div class="card-body">
+      <h3>Share</h3>
+      <a target="_blank" data-size="large" class="twitter-share-button"
+         href="https://twitter.com/intent/tweet?text={{this.title}} {{this.url}}">
+<!--        <span class="fa fa-twitter" style="font-size: 3em; color: dodgerblue;">-->
+        <img src="assets/twitter.png" style="height: 40px; width: 40px">
+<!--        </span>-->
+      </a>
+      <a target="_blank" class="fb-xfbml-parse-ignore px-2"
+         href="https://www.facebook.com/sharer/sharer.php?u={{this.url}}">
+<!--        <span class="fa fa-facebook-square" style="font-size: 3em; color: blue;">-->
+        <img src="assets/fb.png" style="height: 40px; width: 40px">
+<!--        </span>-->
+      </a>
+    </div>
+
+  </div>
+</div>
+
