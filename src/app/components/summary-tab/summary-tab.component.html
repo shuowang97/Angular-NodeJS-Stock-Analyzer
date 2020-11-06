@@ -61,7 +61,7 @@
 <!--[closeMarket]="closeMarket" [stockDiffer]="stockDiffer"-->
   <div class="col-lg-6">
     <app-summary-chart
-    [parent]="this"  (uploadStatus)="uploadStatus($event)">
+    [parent]="this" [pricesInChart]="pricesToRender">
 
     </app-summary-chart>
   </div>

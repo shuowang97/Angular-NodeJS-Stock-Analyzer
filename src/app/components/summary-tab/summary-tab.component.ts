@@ -17,6 +17,7 @@ export class SummaryTabComponent implements OnInit {
   @Input() stockDiffer: number;
   @Input() closeMarket: boolean;
   @Output() uploadToDetails: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() pricesToRender;
 
 
   url: string = null;

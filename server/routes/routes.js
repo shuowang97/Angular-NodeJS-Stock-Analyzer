@@ -81,7 +81,7 @@ router.get('/daily/:id', (req, res) => {
     console.log("inside >= ");
     dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate());
   } else {
-    console.log("inside <= ")
+    console.log("inside <= ");
     dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate()-1);
   }
   let reqUrl = util.format(dailyTrendUrl, ticker, dString);
@@ -101,6 +101,22 @@ router.get('/posts', (req, res) => {
   })
 });
 
-
+router.get('/test/:id', (req, res) => {
+  let ticker = req.params.id;
+  let startHour = 6;
+  let startMinute = 30;
+  let d = new Date();
+  let dString = '';
+  if (d.getHours() >= startHour && d.getMinutes() >= startMinute) {
+    console.log("inside >= ");
+    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate());
+  } else {
+    console.log("inside <= ");
+    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate()-1);
+  }
+  let reqUrl = util.format(dailyTrendUrl, ticker, dString);
+  console.log('daily', reqUrl);
+  res.send(reqUrl);
+});
 
 module.exports = router;

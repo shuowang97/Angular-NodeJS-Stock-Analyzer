@@ -104,8 +104,9 @@
       <div class="col-12">
         <mat-tab-group dynamicHeight mat-stretch-tabs animationduration="0ms" class="mat-tab-group mat-primary" #tabGroup [(selectedIndex)]="selectedIndex">
           <mat-tab label="Summary">
-            <app-summary-tab [closeMarket]="closeMarket" [lastPrice]="lastP" [stockDiffer]="stockDiffer" (uploadToDetails)="receiveInDetails($event)"
-                             [companyShort]="companyShort" [loadingLastPrice]="loadingLastPrice" [loadingCompanyInfo]="loadingCompanyInfo">
+            <app-summary-tab [closeMarket]="closeMarket" [lastPrice]="lastP" [stockDiffer]="stockDiffer"
+                             [companyShort]="companyShort" [loadingLastPrice]="loadingLastPrice" [loadingCompanyInfo]="loadingCompanyInfo"
+                             [pricesToRender]="prices">
             </app-summary-tab>
           </mat-tab>
           <mat-tab label="Top News">

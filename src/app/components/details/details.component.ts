@@ -43,7 +43,10 @@ export class DetailsComponent implements OnInit {
   pricePair: PricePair;
   successBuyAlert = false;
   modalRef: NgbModalRef;
-  loadingChart = false;
+  loadingChart = true;
+  dailyList = [];
+  newDailyList = [];
+  prices = [];
   constructor(private homePageService: HomepageService,
               private modalService: NgbModal) {
   }
@@ -138,6 +141,7 @@ export class DetailsComponent implements OnInit {
     //   this.companyShortArr[0] = this.companyShort;
     // });
     this.getCurrentTimeString();
+    this.getDailyData(this.ticker);
   }
 
   private checkLocalStorage(): boolean {
@@ -241,6 +245,27 @@ export class DetailsComponent implements OnInit {
   receiveInDetails(statusFromChart: boolean): void {
     // console.log('statusFromChart', statusFromChart);
     this.loadingChart = statusFromChart;
+  }
+
+  getDailyData(ticker: string): any {
+    this.loadingChart = true;
+    this.homePageService.getDailyDataAPI(ticker).subscribe(res => {
+      console.log(res);
+      this.dailyList = res;
+      for (const data of this.dailyList) {
+        this.newDailyList.push([new Date(data.date).valueOf(), data.close]);
+      }
+      console.log(this.newDailyList);
+
+      for (let i = 0; i < this.newDailyList.length; i++) {
+        this.prices.push([
+          this.newDailyList[i][0], // date
+          this.newDailyList[i][1], // close
+        ]);
+      }
+      this.loadingChart = false;
+      console.log('loading in dETAILS', this.loadingChart);
+    });
   }
 }
 
