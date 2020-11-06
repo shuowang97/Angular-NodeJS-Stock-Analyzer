@@ -26,7 +26,7 @@ export class HomepageComponent implements OnInit {
       this.keyword = '';
       this.myControl.valueChanges.pipe(
         debounceTime(300),
-        tap((ticker) => console.log(ticker + ' ' + typeof ticker)),
+        // tap((ticker) => console.log(ticker + ' ' + typeof ticker)),
         filter(ticker => {
           if (typeof ticker === 'string') {
             return ticker.trim() !== '';
@@ -57,7 +57,7 @@ export class HomepageComponent implements OnInit {
   // }
 
   onSubmit(): void {
-    console.log(this.myControl.value.ticker);
+    // console.log(this.myControl.value.ticker);
     if (this.myControl.value.ticker === undefined) {
       this.triggerAlert = true;
       console.log(' ticker is undefined ................');

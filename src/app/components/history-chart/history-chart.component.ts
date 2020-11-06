@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HomepageService} from '../../services/homepage.service';
 import * as Highcharts from 'highcharts/highstock';
 import { Options } from 'highcharts/highstock';
@@ -25,12 +25,12 @@ export class HistoryChartComponent implements OnInit {
     const url = window.location.href;
     const subUrl = url.substring(url.lastIndexOf('/') + 1);
     homePageService.getHistoryDataAPI(subUrl).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.historyList = res;
       for (const data of this.historyList) {
         this.newHistory.push([new Date(data.date).valueOf(), data.open, data.high, data.low, data.close, data.volume]);
       }
-      console.log(this.newHistory);
+      // console.log(this.newHistory);
       for (let i = 0; i < this.newHistory.length; i += 1) {
         this.ohlc.push([
           this.newHistory[i][0], // the date

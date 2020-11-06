@@ -43,6 +43,7 @@ export class DetailsComponent implements OnInit {
   pricePair: PricePair;
   successBuyAlert = false;
   modalRef: NgbModalRef;
+  loadingChart = false;
   constructor(private homePageService: HomepageService,
               private modalService: NgbModal) {
   }
@@ -88,7 +89,10 @@ export class DetailsComponent implements OnInit {
         portfolioItems.push(boughtItem);
       }
       localStorage.setItem('portfolio', JSON.stringify(portfolioItems));
-    });
+    })
+      .catch(res => {
+        console.log('click close');
+      });
 
   }
 
@@ -234,5 +238,9 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  receiveInDetails(statusFromChart: boolean): void {
+    // console.log('statusFromChart', statusFromChart);
+    this.loadingChart = statusFromChart;
+  }
 }
 

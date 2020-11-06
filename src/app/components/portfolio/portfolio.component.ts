@@ -22,7 +22,9 @@ export class PortfolioComponent implements OnInit {
       this.showUpAlert = true;
       portfolioLocal = [];
     }
-    portfolioLocal.sort((a, b) => a.name.localeCompare(b.name));
+    portfolioLocal.sort((a, b) => a.ticker.localeCompare(b.ticker));
+    localStorage.setItem('portfolio', JSON.stringify(portfolioLocal));
+    console.log('portfolioLocal', portfolioLocal);
     this.totalCards = portfolioLocal.length;
     for (let i = 0; i < portfolioLocal.length; i++) {
       const item = portfolioLocal[i];

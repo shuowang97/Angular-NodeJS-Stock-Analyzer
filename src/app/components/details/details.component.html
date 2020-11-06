@@ -1,8 +1,8 @@
 <div class="container-lg p-sm-0container-lg p-sm-0">
-  <div *ngIf="loadingLastPrice || loadingCompanyInfo" class="text-center">
+  <div *ngIf="loadingLastPrice || loadingCompanyInfo || loadingChart" class="text-center">
     <mat-spinner diameter="66" strokeWidth="5" class="mt-5 mx-auto"></mat-spinner>
   </div>
-  <div class="my-3 col-12" *ngIf="!loadingLastPrice && !loadingCompanyInfo">
+  <div class="my-3 col-12" *ngIf="!loadingLastPrice && !loadingCompanyInfo && !loadingChart">
     <div class="row mt-3">
 
       <div class="alert alert-success alert-dismissible fade show col-12 text-center" role="alert"
@@ -104,7 +104,7 @@
       <div class="col-12">
         <mat-tab-group dynamicHeight mat-stretch-tabs animationduration="0ms" class="mat-tab-group mat-primary" #tabGroup [(selectedIndex)]="selectedIndex">
           <mat-tab label="Summary">
-            <app-summary-tab [closeMarket]="closeMarket" [lastPrice]="lastP"
+            <app-summary-tab [closeMarket]="closeMarket" [lastPrice]="lastP" [stockDiffer]="stockDiffer" (uploadToDetails)="receiveInDetails($event)"
                              [companyShort]="companyShort" [loadingLastPrice]="loadingLastPrice" [loadingCompanyInfo]="loadingCompanyInfo">
             </app-summary-tab>
           </mat-tab>

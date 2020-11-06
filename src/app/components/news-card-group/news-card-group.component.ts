@@ -32,7 +32,7 @@ export class NewsCardGroupComponent implements OnInit {
           this.newsList = res;
           this.newsArticles = this.newsList.articles;
           this.numOfArticles = this.newsArticles.length;
-          console.log('it is keep running!!!!!!!!!');
+          // console.log('it is keep running!!!!!!!!!');
         });
       }
     } else {

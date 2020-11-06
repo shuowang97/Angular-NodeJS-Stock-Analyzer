@@ -27,7 +27,7 @@ export class PortfolioCardComponent implements OnInit {
               private homepageService: HomepageService) { }
 
   ngOnInit(): void {
-    console.log('in here =========================');
+    // console.log('in here =========================');
   }
 
   styleChoice(): object {
@@ -80,7 +80,10 @@ export class PortfolioCardComponent implements OnInit {
       //   }
       // }
       // localStorage.setItem('portfolio', JSON.stringify(portfolioItems));
-    });
+    })
+      .catch(res => {
+        console.log('click close');
+      });
     // this.itemToRender.currentPrice = this.homepageService.getInstantPriceAPI(this.itemToRender.ticker).
     // pipe(map(res => {
     //   return res;
@@ -128,7 +131,7 @@ export class PortfolioCardComponent implements OnInit {
           if (portfolioItem.ticker === this.itemToRender.ticker) {
             portfolioItem.qty -= this.pricePair.quantity;
             portfolioItem.totalPrice -= this.pricePair.totalPrice;
-            console.log('qty', portfolioItem.qty);
+            // console.log('qty', portfolioItem.qty);
             if (portfolioItem.qty === 0) {
               portfolioItems.splice(i, 1);
               this.onDelete(portfolioItem.ticker);
@@ -154,7 +157,10 @@ export class PortfolioCardComponent implements OnInit {
       //   }
       // }
       // localStorage.setItem('portfolio', JSON.stringify(portfolioItems));
-    });
+    })
+      .catch(res => {
+        console.log('click close');
+      });
   }
 
   onDelete(ticker: string): void {

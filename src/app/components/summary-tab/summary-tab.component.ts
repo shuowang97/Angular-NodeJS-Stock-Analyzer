@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HomepageService} from '../../services/homepage.service';
 import {LastPrice} from '../../models/lastPrice';
 import {CompanyShort} from '../../models/companyShort';
@@ -10,14 +10,18 @@ import {finalize, map, tap} from 'rxjs/operators';
   styleUrls: ['./summary-tab.component.css']
 })
 export class SummaryTabComponent implements OnInit {
-  @Input() closeMarket: boolean;
   @Input() lastPrice: LastPrice;
   @Input() companyShort: CompanyShort;
   @Input() loadingLastPrice: boolean;
   @Input() loadingCompanyInfo: boolean;
+  @Input() stockDiffer: number;
+  @Input() closeMarket: boolean;
+  @Output() uploadToDetails: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 
   url: string = null;
   ticker: string = null;
+  loadingChart = true;
   // lastPrice: LastPrice;
   // companyShort: CompanyShort;
   // companyShortArr = [];
@@ -26,8 +30,13 @@ export class SummaryTabComponent implements OnInit {
   constructor(private homepageService: HomepageService) { }
 
   ngOnInit(): void {
+    // console.log('tab value', this.parent.loadingChart);
+    // this.parent.loadingChart = this.loadingChart;
     this.url = window.location.href;
     this.ticker = this.url.substring(this.url.lastIndexOf('/') + 1);
+
+    // console.log('clocemarket', this.closeMarket);
+    // console.log('stockdiffer', this.stockDiffer);
 
     // this.homepageService.getLastPrice(this.ticker).pipe(
     //   finalize(() => this.loadingPrice = false)
@@ -50,4 +59,8 @@ export class SummaryTabComponent implements OnInit {
   }
 
 
+  uploadStatus(statusFromChart: boolean): void {
+    // console.log('uploadStatus', statusFromChart);
+    this.uploadToDetails.emit(statusFromChart);
+  }
 }

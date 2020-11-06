@@ -1,3 +1,13 @@
-<p>summary-chart works!</p>
-<p>summary-chart works!</p>
-<p>summary-chart works!</p>
+<div class="container mx-auto" >
+<!--  *ngIf="this.ohlc.length !== 0 && this.ohlc.length === this.newHistory.length"-->
+    <highcharts-chart *ngIf="this.prices.length !== 0 && this.prices.length === this.newDailyList.length"
+      [Highcharts]="Highcharts" 
+      [constructorType]="'stockChart'" 
+      [options]="chartOptions"
+      [(update)]="updateflag"
+      style="width: 100%; display: block; overflow: hidden;"
+
+
+    >
+    </highcharts-chart>
+</div>

@@ -8,8 +8,6 @@ const routes = require('./server/routes/routes');
 // make sure server knows that the whole /dist folder is static
 app.use(express.static(path.join(__dirname, 'dist/ang-node')));
 // everything goes to /posts get some specific response
-// 这里设计缺陷，所有posts目录本来是用于api的，结果又用于显示组件，所以有bug
-// TODO： 解决方式很简单，把这里的url改一下 注意：service里的http.get()也要改
 app.use('/routes', routes);
 
 // all of other requests will get to /dist/ang-node/index.html

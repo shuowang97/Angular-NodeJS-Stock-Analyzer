@@ -30,22 +30,33 @@ export class HomepageService {
 
 
   getHistoryDataAPI(ticker: string): any {
-    const url = 'http://localhost:4600/routes/history/' + ticker;
+    const url = 'routes/history/' + ticker;
     const response = this.http.get(url).pipe(
       map(res => {
         return res;
       }));
-    console.log(response);
+    // console.log(response);
     return response;
   }
 
-  instantSearchAPI(ticker: string): Observable<any> {
-    const url = 'http://localhost:4600/routes/utility/' + ticker;
+  getDailyDataAPI(ticker: string): any {
+    const url = 'routes/daily/' + ticker;
     const response = this.http.get(url).pipe(
       map(res => {
         return res;
       }));
-    console.log(response);
+    // console.log(response);
+    return response;
+  }
+
+
+  instantSearchAPI(ticker: string): Observable<any> {
+    const url = 'routes/utility/' + ticker;
+    const response = this.http.get(url).pipe(
+      map(res => {
+        return res;
+      }));
+    // console.log(response);
     return response;
   }
 
@@ -55,9 +66,9 @@ export class HomepageService {
   }
 
   getInstantPriceAPI(ticker: string): any {
-    console.log('inside price API --------------------------------');
+    // console.log('inside price API --------------------------------');
 
-    const url = 'http://localhost:4600/routes/lastprice/' + ticker;
+    const url = 'routes/lastprice/' + ticker;
     // console.log(this.http.get('routes/lastprice', {params}));
     const response = this.http.get(url).pipe(
       map(res => {
@@ -67,7 +78,7 @@ export class HomepageService {
       console.log(res);
       return res;
     });
-    console.log(ret);
+    // console.log(ret);
     return ret;
   }
 
@@ -77,34 +88,34 @@ export class HomepageService {
     //     fromString : url
     //   })};
     // let
-    const url = 'http://localhost:4600/routes/lastprice/' + ticker;
+    const url = 'routes/lastprice/' + ticker;
     // console.log(this.http.get('routes/lastprice', {params}));
     const response = this.http.get(url).pipe(
       map(res => {
         return res;
       }));
-    console.log(response);
+    // console.log(response);
     return response;
   }
 
   getCompanyDescriptionAPI(ticker: string): any {
-    const url = 'http://localhost:4600/routes/companyinfo/' + ticker;
+    const url = 'routes/companyinfo/' + ticker;
     // console.log(this.http.get('routes/lastprice', {params}));
     const response = this.http.get(url).pipe(
       map(res => {
         return res;
       }));
-    console.log(response);
+    // console.log(response);
     return response;
   }
 
   getNewsListAPI(ticker: string): any {
-    const url = 'http://localhost:4600/routes/news/' + ticker;
+    const url = 'routes/news/' + ticker;
     const response = this.http.get(url).pipe(
       map(res => {
         return res;
       }));
-    console.log(response);
+    // console.log(response);
     return response;
   }
 

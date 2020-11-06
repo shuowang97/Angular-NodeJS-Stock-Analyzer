@@ -4,7 +4,7 @@
   <div class="py-5">
     <span class="h1">My Watchlist</span>
   </div>
-  <div *ngIf="currentResNumber !== watchListItems.length" class="text-center">
+  <div *ngIf="!showUpAlert && (currentResNumber !== watchListItems.length)" class="text-center">
     <mat-spinner diameter="66" strokeWidth="5" class="mt-5 mx-auto"></mat-spinner>
   </div>
   <div *ngIf="showUpAlert && currentResNumber === watchListItems.length" >

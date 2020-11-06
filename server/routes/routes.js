@@ -11,6 +11,7 @@ const tiingoKEY = 'b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
 const utilityUrl = 'https://api.tiingo.com/tiingo/utilities/search/';
 const descriptionUrl = 'https://api.tiingo.com/tiingo/daily/';
 const lastPriceUrl = 'https://api.tiingo.com/iex';
+const dailyTrendUrl = 'https://api.tiingo.com/iex/%s/prices?startDate=%s&resampleFreq=4min&token=b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
 const newsUrl = 'https://newsapi.org/v2/everything?apiKey=bbef8dd425204e818bbead05dd243053&q=';
 const util = require('util');
 const historicalUrl = 'https://api.tiingo.com/tiingo/daily/%s/prices?startDate=%s&resampleFreq=daily&token=b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
@@ -43,6 +44,7 @@ router.get('/news/:id', (req, res) => {
     res.json(info.data);
   });
 });
+
 router.get('/history/:id', (req, res) => {
   let ticker = req.params.id;
   let d = new Date();
@@ -69,8 +71,27 @@ router.get('/utility/:id', (req, res) => {
   });
 });
 
+router.get('/daily/:id', (req, res) => {
+  let ticker = req.params.id;
+  let startHour = 6;
+  let startMinute = 30;
+  let d = new Date();
+  let dString = '';
+  if (d.getHours() >= startHour && d.getMinutes() >= startMinute) {
+    console.log("inside >= ");
+    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate());
+  } else {
+    console.log("inside <= ")
+    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate()-1);
+  }
+  let reqUrl = util.format(dailyTrendUrl, ticker, dString);
+  console.log('daily', reqUrl);
+  axios.get(reqUrl).then(info => {
+    res.json(info.data);
+  });
+});
 
-// Get Post
+// Get Post ONLY USED FOR TEST
 router.get('/posts', (req, res) => {
   // res.send("Posts works");
   axios.get(`${PostAPI}/posts`).then(posts => {

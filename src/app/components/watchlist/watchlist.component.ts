@@ -52,6 +52,7 @@ export class WatchlistComponent implements OnInit {
       const curItem = this.renderList[i];
       if (listItem.ticker === curItem.ticker) {
         this.renderList.splice(i, 1);
+        this.currentResNumber--;
         break;
       }
     }
