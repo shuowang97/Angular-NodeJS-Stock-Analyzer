@@ -164,7 +164,7 @@ export class DetailsComponent implements OnInit {
     this.currentTime = new Date();
     this.timeString = this.currentTime.getFullYear() + '-' +
       (this.currentTime.getMonth() + 1 < 10 ? '0' + (this.currentTime.getMonth() + 1) : this.currentTime.getMonth() + 1) + '-' +
-      (this.currentTime.getDay() + 1 < 10 ? '0' + (this.currentTime.getDay() + 1) : this.currentTime.getDay() + 1) + ' ' +
+      (this.currentTime.getDate() + 1 < 10 ? '0' + (this.currentTime.getDate()) : this.currentTime.getDate()) + ' ' +
       (this.currentTime.getHours() < 10 ? '0' + this.currentTime.getHours() : this.currentTime.getHours()) + ':' +
       (this.currentTime.getMinutes() < 10 ? '0' + this.currentTime.getMinutes() : this.currentTime.getMinutes()) + ':' +
       (this.currentTime.getSeconds() < 10 ? '0' + this.currentTime.getSeconds() : this.currentTime.getSeconds());
@@ -174,7 +174,7 @@ export class DetailsComponent implements OnInit {
     // TODO: change it back later, 15s
     const subscription = interval(15000).subscribe(x => {
       this.homePageService.getLastPriceAPI(this.ticker).subscribe(res => {
-        const curSelectedIndex = this.tab.selectedIndex;
+        // const curSelectedIndex = this.tab.selectedIndex;
         console.log('running every 15s');
         this.lastPrice = res;
         this.lastP = this.lastPrice[0];
@@ -187,10 +187,11 @@ export class DetailsComponent implements OnInit {
           this.lastSuccessTimeString = this.lastSuccessTime.toString().substring(16, 24);
         }
         // send value to modal, do not need to subscribe again in above open() function;
-        this.modalRef.componentInstance.price = this.lastP.last;
+        // this.modalRef.componentInstance.price = this.lastP.last;
 
         this.getCurrentTimeString();
-        this.selectedIndex = curSelectedIndex;
+        console.log('current', this.timeString);
+        // this.selectedIndex = curSelectedIndex;
         if (this.closeMarket) {
           subscription.unsubscribe();
           console.log('unsub..............');

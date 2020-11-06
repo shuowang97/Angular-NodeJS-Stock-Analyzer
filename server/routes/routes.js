@@ -74,15 +74,32 @@ router.get('/utility/:id', (req, res) => {
 router.get('/daily/:id', (req, res) => {
   let ticker = req.params.id;
   let startHour = 6;
-  let startMinute = 30;
-  let d = new Date();
+  let d = new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+  let AM = d.substring(d.length - 2, d.length);
+  let substrings = d.split('/');
+  let month = substrings[0];
+  let date = substrings[1];
+  let year = new Date().getFullYear();
+  let temp = substrings[2].substring(6, 14);
+  let tempAll = temp.split(':');
+  let hour = tempAll[0];
+  if (AM !== 'AM') {
+    hour = parseInt(hour) + 12;
+  } else{
+    if (parseInt(hour) === 12) {
+      hour = parseInt(hour) - 12;
+      console.log('hour', hour);
+    }
+  }
+  let minute = tempAll[1];
+
   let dString = '';
-  if (d.getHours() >= startHour && d.getMinutes() >= startMinute) {
+  if (hour >= startHour) {
     console.log("inside >= ");
-    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate());
+    dString = (year) + '-' + (month) + '-' + (date);
   } else {
     console.log("inside <= ");
-    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate()-1);
+    dString = (year) + '-' + (month) + '-' + (parseInt(date) - 1);
   }
   let reqUrl = util.format(dailyTrendUrl, ticker, dString);
   console.log('daily', reqUrl);
@@ -102,19 +119,39 @@ router.get('/posts', (req, res) => {
 });
 
 router.get('/test/:id', (req, res) => {
-  let ticker = req.params.id;
+  let reqUrl = '';
   let startHour = 6;
   let startMinute = 30;
-  let d = new Date();
-  let dString = '';
-  if (d.getHours() >= startHour && d.getMinutes() >= startMinute) {
-    console.log("inside >= ");
-    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate());
-  } else {
-    console.log("inside <= ");
-    dString = (d.getFullYear()) + '-' + (d.getMonth()+1) + '-' + (d.getDate()-1);
+  // let d = new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+  let d = '11/6/2020, 4:57:28 PM';
+  let AM = d.substring(d.length - 2, d.length);
+  let substrings = d.split('/');
+  let month = substrings[0];
+  let date = substrings[1];
+  let year = new Date().getFullYear();
+  let temp = substrings[2].substring(6, 14);
+  let tempAll = temp.split(':');
+  let hour = tempAll[0];
+  console.log(AM);
+  if (AM !== 'AM') {
+    hour = parseInt(hour) + 12;
+  } else{
+    if (parseInt(hour) === 12) {
+      hour = parseInt(hour) - 12;
+      console.log('hour', hour);
+    }
   }
-  let reqUrl = util.format(dailyTrendUrl, ticker, dString);
+  let minute = tempAll[1];
+
+  let dString = '';
+  // if (hour >= startHour && minute >= startMinute) {
+  //   console.log("inside >= ");
+    dString = (year) + '-' + (month) + '-' + (date) + '-' + (hour) + '-' + (minute) + ' ' + AM;
+  // } else {
+  //   console.log("inside <= ");
+  //   dString = (year) + '-' + (month) + '-' + (parseInt(date) - 1);
+  // }
+  reqUrl += ' + ' + dString;
   console.log('daily', reqUrl);
   res.send(reqUrl);
 });
