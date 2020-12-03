@@ -26,12 +26,12 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
 import { NewsCardGroupComponent } from './components/news-card-group/news-card-group.component';
 import { WatchlistCardComponent } from './components/watchlist-card/watchlist-card.component';
 import { BuyModalComponent } from './components/buy-modal/buy-modal.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { PortfolioCardComponent } from './components/portfolio-card/portfolio-card.component';
 import { ArraySortPipe } from './utils/arraySortPipe';
 import { NewsModalComponent } from './components/news-modal/news-modal.component';
 import { HistoryChartComponent } from './components/history-chart/history-chart.component';
-import {HighchartsChartModule} from 'highcharts-angular';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [

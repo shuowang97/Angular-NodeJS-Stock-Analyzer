@@ -12,7 +12,7 @@ const utilityUrl = 'https://api.tiingo.com/tiingo/utilities/search/';
 const descriptionUrl = 'https://api.tiingo.com/tiingo/daily/';
 const lastPriceUrl = 'https://api.tiingo.com/iex';
 const dailyTrendUrl = 'https://api.tiingo.com/iex/%s/prices?startDate=%s&resampleFreq=4min&token=b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
-const newsUrl = 'https://newsapi.org/v2/everything?apiKey=bbef8dd425204e818bbead05dd243053&q=';
+const newsUrl = 'https://newsapi.org/v2/everything?apiKey=1d0d862751444f5a80291aaaa6049f99&q=';
 const util = require('util');
 const historicalUrl = 'https://api.tiingo.com/tiingo/daily/%s/prices?startDate=%s&resampleFreq=daily&token=b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
 
