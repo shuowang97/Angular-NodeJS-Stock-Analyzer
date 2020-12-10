@@ -2,11 +2,13 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const fetch = require('node-fetch');
+
 const PostAPI = 'https://jsonplaceholder.typicode.com';
 
 const tiingoKEY = 'b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
 // const tiingoKEY = '3f19da6b56850f57435309e27dc47433e95b7631';
-
+const url_historical_chart = 'https://api.tiingo.com/tiingo/daily/%s/prices?startDate=%s&resampleFreq=daily&token=3f19da6b56850f57435309e27dc47433e95b7631';
 
 const utilityUrl = 'https://api.tiingo.com/tiingo/utilities/search/';
 const descriptionUrl = 'https://api.tiingo.com/tiingo/daily/';
@@ -15,6 +17,19 @@ const dailyTrendUrl = 'https://api.tiingo.com/iex/%s/prices?startDate=%s&resampl
 const newsUrl = 'https://newsapi.org/v2/everything?apiKey=1d0d862751444f5a80291aaaa6049f99&q=';
 const util = require('util');
 const historicalUrl = 'https://api.tiingo.com/tiingo/daily/%s/prices?startDate=%s&resampleFreq=daily&token=b46119b62502a8ecc7e70d99b7c265bd9fbfd39d';
+
+function get2YearsAge(){
+  let date = new Date();
+  date.setDate(date.getDate() + 1);
+  let year = date.getFullYear()-2;
+  let month = date.getMonth()+1;
+  let day = date.getDate();
+  if(month<10) month = '0' + month;
+  if(day<10) day = '0' + day;
+  let result1 = year + '-' + month + '-' + day;
+  //console.log(result);
+  return result1;
+}
 
 
 router.get('/', (req, res) => {
@@ -154,6 +169,29 @@ router.get('/test/:id', (req, res) => {
   reqUrl += ' + ' + dString;
   console.log('daily', reqUrl);
   res.send(reqUrl);
+});
+
+
+router.get('/history-test/:id', function(request, response){
+
+  let ticker = request.params.id;
+  let d = new Date();
+  d.setFullYear(d.getFullYear() - 2);
+  let dString = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + (d.getDate());
+  let url = util.format(historicalUrl, ticker, dString);
+
+  fetch(url)
+    .then(res1 => res1.json())
+    .then(json => {
+      let new_json = [];
+      //console.log(json);
+      for(let data of json){
+        new_json.push([new Date(data.date).valueOf(),data.open,data.high,data.low,data.close,data.volume]);
+      }
+      response.json(new_json);
+      //response.send();
+    }).catch(error => console.log('caught', error));
+
 });
 
 module.exports = router;
