@@ -1,4 +1,4 @@
-This is a platform which based on Angular and NodeJS(Express) framework. You could check a live version of this platform, which is deployed on Microsoft Azure.
+This is a platform to help people monitor a few stocks the users may be interested in, which is based on Angular and NodeJS(Express) framework. You could check a live version of this platform, deployed on Microsoft Azure.
 
 https://sw-571-hw8.azurewebsites.net/
 
